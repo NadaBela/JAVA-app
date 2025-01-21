@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des Développeurs et Projets</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f6f1; /* Couleur de fond beige clair */
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    h1 {
+      color: #6b4226; /* Brun foncé */
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 90%;
+      max-width: 1200px;
+      margin-top: 20px;
+      background-color: #fef6e4; /* Beige */
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f4d9b3; /* Beige foncé pour l'en-tête */
+      color: #6b4226; /* Brun foncé */
+      text-transform: uppercase;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f4eb; /* Ligne de couleur alternée */
+    }
+
+    tr:hover {
+      background-color: #f1e7d0; /* Effet survol */
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #6b4226; /* Brun foncé */
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    a:hover {
+      background-color: #8d5a38; /* Brun un peu plus clair */
+    }
+  </style>
+</head>
+<body>
+<h1>Liste des Développeurs et Projets</h1>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Nom</th>
+    <th>Email</th>
+    <th>Statut</th>
+    <th>Compétences</th>
+    <th>Projet Assigné</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="dev : ${developpeurs}">
+    <td th:text="${dev.id}">ID</td>
+    <td th:text="${dev.firstName}">Nom</td>
+    <td th:text="${dev.email}">Email</td>
+    <td th:text="${dev.disponible ? 'Disponible' : 'Non disponible'}">Statut</td>
+    <td th:text="${#strings.arrayJoin(dev.competences.toArray(), ', ')}">Compétences</td>
+    <td th:text="${dev.projet != null ? dev.projet.nom : 'Non affecté'}">Projet Assigné</td>
+  </tr>
+  </tbody>
+</table>
+<a href="/projets/list">Retour aux Projets</a>
+</body>
+</html>

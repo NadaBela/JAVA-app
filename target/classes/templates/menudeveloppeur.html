@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Développeur</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
+    <!-- Styles personnalisés -->
+    <style>
+        :root {
+            --primary-color: #4A90E2; /* Bleu ciel */
+            --secondary-color: #F5F7FA; /* Gris très clair */
+            --button-color: #D6D6D6; /* Gris doux */
+            --button-hover: #B0B0B0;
+            --footer-color: #4A90E2;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* En-tête */
+        .header {
+            text-align: center;
+            background: linear-gradient(to bottom right, #4A90E2, #56CCF2);
+            color: #fff;
+            padding: 25px 0;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        /* Section Menu */
+        .menu-section {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: auto;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .menu-section h2 {
+            color: var(--primary-color);
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        /* Boutons */
+        .btn-menu {
+            display: block;
+            background-color: var(--button-color);
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 10px auto;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-menu:hover {
+            background-color: var(--button-hover);
+            transform: scale(1.05);
+        }
+
+        .btn-logout {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 1rem;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-logout:hover {
+            background-color: #357ABD;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--footer-color);
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: #D6EAF8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<!-- En-tête -->
+<div class="header">
+    Menu Développeur
+</div>
+
+<!-- Section Menu -->
+<div class="menu-section">
+    <h2>Bienvenue !</h2>
+    <a href="http://localhost:8080/developpeurs/showFormUpdate" class="btn-menu">
+        <i class="fas fa-user-plus"></i> Modifier vos informations
+    </a>
+
+    <a href="http://localhost:8080/developpeurs/mes-projets" class="btn-menu">
+        <i class="fas fa-tasks"></i> Consulter vos projets
+    </a>
+    <a href="http://localhost:8080/evaluations/view" class="btn-menu">
+        <i class="fas fa-star"></i> Consulter vos évaluations
+    </a>
+
+    <!-- Déconnexion -->
+    <a href="/logout" class="btn-logout mt-4">
+        <i class="fas fa-sign-out-alt"></i> Déconnexion
+    </a>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 ProjectFlow. Tous droits réservés | <a href="#">Mentions légales</a></p>
+</footer>
+</body>
+</html>

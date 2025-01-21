@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recherche de Développeurs</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #4A90E2; /* Bleu ciel */
+      --secondary-color: #F5F7FA; /* Gris très clair */
+      --text-color: #333333; /* Texte noir doux */
+      --button-color: #D6D6D6; /* Gris doux */
+      --button-hover: #B0B0B0; /* Gris plus foncé */
+      --table-header-bg: #E0E0E0; /* Gris clair */
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--secondary-color);
+      color: var(--text-color);
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Barre du haut */
+    .header-bar {
+      background: linear-gradient(to right, #4A90E2, #56CCF2);
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 1.5rem;
+      font-weight: 400;
+      border-bottom-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+      margin-bottom: 20px;
+    }
+
+    /* Conteneur principal */
+    .container-form {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: var(--primary-color);
+      font-weight: 400;
+    }
+
+    label {
+      font-weight: 400;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+    }
+
+    /* Boutons raccourcis */
+    button, .btn-menu {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: var(--button-color); /* Gris doux */
+      color: var(--text-color);
+      text-decoration: none;
+      border: none;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 400;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 150px; /* Raccourcir les boutons */
+    }
+
+    button:hover, .btn-menu:hover {
+      background-color: var(--button-hover);
+    }
+
+    /* Résultats */
+    .results {
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 600px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background-color: #F9F9F9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin: 5px 0;
+      padding: 10px;
+      font-weight: 400;
+    }
+
+    /* Barre du bas */
+    .footer-bar {
+      background: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      margin-top: auto;
+      font-size: 0.9rem;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    .footer-bar a {
+      color: #D6EAF8;
+      text-decoration: none;
+    }
+
+    .footer-bar a:hover {
+      color: white;
+    }
+
+    /* Centrage des boutons */
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+<!-- Barre du Haut -->
+<div class="header-bar">
+  Recherche de Développeurs par Compétence
+</div>
+
+<!-- Conteneur Principal -->
+<div class="container-form">
+  <form th:action="@{/developpeurs/chercher}" method="post">
+    <label for="competence">Compétence :</label>
+    <input type="text" id="competence" name="competence" placeholder="Ex: Java, Spring" required>
+    <div class="button-container">
+      <button type="submit">Rechercher</button>
+    </div>
+  </form>
+</div>
+
+<!-- Résultats -->
+<div class="results" th:if="${developpeurs != null}">
+  <h2>Résultats :</h2>
+  <ul>
+    <li th:each="developpeur : ${developpeurs}">
+      <span th:text="${developpeur.firstName}"></span> -
+      <span th:text="${developpeur.competences}"></span>
+    </li>
+  </ul>
+</div>
+
+<!-- Bouton Retour Menu -->
+<div class="button-container" style="margin-top: 20px;">
+  <a href="/chefs/menu" class="btn-menu">Retour au Menu</a>
+</div>
+
+<!-- Barre du Bas -->
+<div class="footer-bar">
+  &copy; 2024 ProjectFlow. Tous droits réservés | <a href="#">Mentions légales</a>
+</div>
+</body>
+</html>

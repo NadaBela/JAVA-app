@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Chef de Projet</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome pour les icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles personnalisés -->
+  <style>
+    :root {
+      --primary-color: #4A90E2; /* Bleu principal */
+      --secondary-color: #F5F7FA; /* Gris très clair */
+      --button-color: #D6D6D6; /* Gris doux */
+      --button-hover: #B0B0B0; /* Gris plus foncé */
+      --text-color: #333333;
+      --button-text: #333333; /* Texte des boutons */
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--secondary-color);
+      color: var(--text-color);
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      background: linear-gradient(to bottom right, #4A90E2, #56CCF2);
+      color: #fff;
+      padding: 20px 0;
+      border-bottom-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      width: 100%;
+    }
+
+    .header h1 {
+      font-weight: 600;
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    /* Conteneur principal */
+    .menu-section {
+      background-color: #FFFFFF;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 500px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    h2 {
+      font-weight: 400;
+      font-size: 1.3rem;
+      margin-bottom: 25px;
+    }
+
+    /* Boutons du menu */
+    .btn-menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--button-color);
+      color: var(--button-text);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 10px auto;
+      width: 100%;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-menu i {
+      margin-right: 8px;
+    }
+
+    .btn-menu:hover {
+      background-color: var(--button-hover);
+      transform: scale(1.03);
+    }
+
+    /* Bouton Déconnexion */
+    .btn-logout {
+      background-color: #E74C3C;
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 10px 20px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 15px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-logout:hover {
+      background-color: #C0392B;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--primary-color);
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: auto;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      width: 100%;
+    }
+
+    footer a {
+      color: #D6EAF8;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+<!-- Header -->
+<div class="header">
+  <h1>Menu Chef de Projet</h1>
+</div>
+
+<!-- Menu Principal -->
+<div class="menu-section">
+  <h2>Bienvenue !</h2>
+
+  <a th:if="${session.loggedChef != null}" th:href="@{'/chefs/update/' + ${session.loggedChef.id}}" class="btn-menu">
+    <i class="fas fa-user-edit"></i> Modifier mes informations
+  </a>
+
+  <a href="http://localhost:8080/projets/add" class="btn-menu">
+    <i class="fas fa-tasks"></i> Ajouter un projet
+  </a>
+
+  <a href="http://localhost:8080/projets/list" class="btn-menu">
+    <i class="fas fa-list"></i> Lister tous les projets
+  </a>
+
+  <a href="http://localhost:8080/developpeurs/chercher" class="btn-menu">
+    <i class="fas fa-search"></i> Chercher un développeur
+  </a>
+
+  <a href="http://localhost:8080/projets/affecter-developpeurs" class="btn-menu">
+    <i class="fas fa-user-friends"></i> Affecter un développeur
+  </a>
+
+  <a href="http://localhost:8080/evaluations/form" class="btn-menu">
+    <i class="fas fa-star"></i> Évaluer un développeur
+  </a>
+
+  <!-- Bouton Déconnexion -->
+  <a href="http://localhost:8080/chefs/logout" class="btn-logout">
+    <i class="fas fa-sign-out-alt"></i> Déconnexion
+  </a>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2024 ProjectFlow. Tous droits réservés | <a href="#">Mentions légales</a></p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

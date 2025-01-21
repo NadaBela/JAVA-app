@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Détails du Projet</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Détails du Projet</h1>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Nom du Projet</th>
+            <td th:text="${projet.nom}"></td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td th:text="${projet.description}"></td>
+        </tr>
+        <tr>
+            <th>Compétences Requises</th>
+            <td th:each="competence : ${projet.competencesRequises}" th:text="${competence}">Compétence</td>
+        </tr>
+        <tr>
+            <th>Chef de Projet</th>
+            <td th:text="${projet.chefDeProjet.nom}"></td>
+        </tr>
+        <tr>
+            <th>Développeurs Assignés</th>
+            <td>
+                <ul>
+                    <li th:each="developpeur : ${projet.developpeurs}" th:text="${developpeur.nom}"></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <th>Date de Début</th>
+            <td th:text="${projet.dateDebut}"></td>
+        </tr>
+        <tr>
+            <th>Date de Fin</th>
+            <td th:text="${projet.dateFin}"></td>
+        </tr>
+    </table>
+
+    <a href="/projets" class="btn btn-secondary">Retour à la liste</a>
+</div>
+</body>
+</html>
