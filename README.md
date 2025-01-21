@@ -1,4 +1,4 @@
-## JAVA-app  ###Gestion des Développeurs et des Projets
+## JAVA-app  Gestion des Développeurs et des Projets
 
 ## Introduction
 
